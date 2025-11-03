@@ -1647,6 +1647,19 @@ header ul li a:hover {
   .working-page .woi-icon { font-size: 38px; }
   .working-page .woi-card h1 { font-size: 20px; }
 }
+
+/* Stronger small-screen fixes for working page */
+@media (max-width: 768px){
+  .working-page #nav { height: 70px; padding: 0 12px; }
+  .working-page header ul li a { font-size: 16px; }
+  .working-page .woi-card { max-width: 100%; width: 100%; box-sizing: border-box; margin: 0; }
+  .working-page .footer { flex-direction: column; gap: 16px; align-items: stretch; }
+  .working-page .foot { min-width: 100%; }
+}
+@media (max-width: 360px){
+  .working-page .woi-card p { font-size: 15px; }
+  .working-page .cta-button { padding: 0.6rem 1rem; }
+}
 /* ====== Logistics page-only responsive enhancements ====== */
 .logistics-page .sec {
     flex-wrap: wrap;
