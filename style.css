@@ -1618,6 +1618,35 @@ header ul li a:hover {
   .logistics-pro-page .pro-hero__title { font-size: 26px; }
   .logistics-pro-page .pro-hero__subtitle { font-size: 16px; }
 }
+
+/* ====== Working page (scoped) ====== */
+.working-page .woi { min-height: 60vh; display: grid; place-items: center; padding: 40px 20px; background: #f7f9fa; }
+.working-page .woi-card { background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 24px; text-align: center; max-width: 720px; box-shadow: 0 10px 26px rgba(16,24,40,.06); }
+.working-page .woi-icon { font-size: 48px; color: #77A22A; margin-bottom: 8px; }
+.working-page .woi-dots { display: inline-flex; gap: 6px; margin: 10px 0 2px; }
+.working-page .woi-dots span { width: 8px; height: 8px; background: #111827; border-radius: 50%; opacity: .25; animation: woiPulse 1.6s infinite ease-in-out; }
+.working-page .woi-dots span:nth-child(2){ animation-delay: .2s; }
+.working-page .woi-dots span:nth-child(3){ animation-delay: .4s; }
+.working-page .woi-actions { display: flex; gap: 10px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+@keyframes woiPulse { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
+
+/* Working page responsive tweaks to mirror desktop look */
+@media (max-width: 900px){
+  .working-page .woi { padding: 32px 16px; }
+  .working-page .woi-card { padding: 22px; border-radius: 14px; }
+  .working-page .woi-icon { font-size: 44px; }
+}
+@media (max-width: 700px){
+  .working-page .logo img { height: 50px; }
+  .working-page .woi-card h1 { font-size: 22px; }
+  .working-page .woi-card p { font-size: 16px; }
+  .working-page .cta-button { width: 100%; text-align: center; }
+}
+@media (max-width: 480px){
+  .working-page .woi { min-height: 66vh; }
+  .working-page .woi-icon { font-size: 38px; }
+  .working-page .woi-card h1 { font-size: 20px; }
+}
 /* ====== Logistics page-only responsive enhancements ====== */
 .logistics-page .sec {
     flex-wrap: wrap;
