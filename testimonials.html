@@ -7,22 +7,27 @@
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="1.png" type="image/x-icon">
 </head>
-<body>
+<body class="side-nav">
     <header>
-        <nav class="navbar" role="navigation" aria-label="Main Navigation">
+        <section id="nav">
             <div class="logo"><a href="index.html" aria-label="Home"><img src="1.png" alt="SwiftBid Logistics Logo" height="60px"></a></div>
-            <ul class="nav-list">
-                <li><a href="index.html" aria-label="Home">Home</a></li>
-                <li><a href="services.html" aria-label="Services">Services</a></li>
-                <li><a href="logistics.html" aria-label="Logistics">Logistics</a></li>
-                <li><a href="warehouse.html" aria-label="Warehouse">Warehouse</a></li>
-                <li><a href="blog.html" aria-label="Blog">Blog</a></li>
-                <li><a href="about.html" aria-label="About Us">About Us</a></li>
-                <li><a href="contact.html" aria-label="Contact Us">Contact Us</a></li>
-                <li><a href="testimonials.html" aria-label="Testimonials">Testimonials</a></li>
-                <li><a href="careers.html" aria-label="Careers">Careers</a></li>
-            </ul>
-        </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="nav-menu" role="navigation" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="index.html" aria-label="Home">Home</a></li>
+                    <li><a href="services.html" aria-label="Services">Services</a></li>
+                    <li><a href="logistics.html" aria-label="Logistics">Logistics</a></li>
+                    <li><a href="warehouse.html" aria-label="Warehouse">Warehouse</a></li>
+                    <li><a href="blog.html" aria-label="Blog">Blog</a></li>
+                    <li><a href="about.html" aria-label="About Us">About Us</a></li>
+                    <li><a href="contact.html" aria-label="Contact Us">Contact Us</a></li>
+                    <li><a href="testimonials.html" aria-label="Testimonials">Testimonials</a></li>
+                    <li><a href="careers.html" aria-label="Careers">Careers</a></li>
+                </ul>
+            </nav>
+        </section>
     </header>
     <main>
         <section class="container" style="margin-top:2rem;">
@@ -77,5 +82,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html> 

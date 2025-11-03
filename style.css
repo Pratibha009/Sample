@@ -17,41 +17,185 @@
 #nav {
     height: 90px;
     background-color: #ffffff;
-    /* display: flex; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
 }
 
 .logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: auto;
-    float: left;
     padding: 10px;
-
-
+    z-index: 1001;
 }
 
 header nav {
-    float: right;
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
 }
+
 header ul {
     list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
 }
 
 header ul li {
     display: inline;
-    margin: 0 20px;
 }
 
 header ul li a {
     text-decoration: none;
     color: #1f1a1a;
     text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 header ul li a:hover {
     color: #77A22A;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #1f1a1a;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 10px;
+}
+
+.mobile-menu-btn:hover {
+    color: #77A22A;
+}
+
+/* Mobile menu styles - Full screen for other pages */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    header nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: #ffffff;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+    
+    header nav.active {
+        left: 0;
+    }
+    
+    header ul {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    header ul li a {
+        font-size: 18px;
+        padding: 10px 20px;
+        display: block;
+    }
+    
+    #nav {
+        height: 70px;
+    }
+}
+
+/* Side navigation styles - Opt-in via body.side-nav */
+body.side-nav .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+}
+
+body.side-nav .mobile-menu-overlay.active {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    body.side-nav header nav {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #ffffff;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding-top: 80px;
+    }
+    
+    body.side-nav header nav.active {
+        left: 0;
+    }
+    
+    body.side-nav header ul {
+        flex-direction: column;
+        gap: 0;
+        text-align: left;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    body.side-nav header ul li {
+        width: 100%;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    body.side-nav header ul li a {
+        font-size: 16px;
+        padding: 15px 25px;
+        display: block;
+        color: #333;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+    
+    body.side-nav header ul li a:hover {
+        background-color: #f8f9fa;
+        color: #77A22A;
+    }
+}
+
+@media (max-width: 480px) {
+    #nav {
+        padding: 0 15px;
+    }
+    
+    .logo img {
+        height: 50px;
+    }
+    
+    header ul li a {
+        font-size: 16px;
+    }
 }
 
 
@@ -464,16 +608,21 @@ header ul li a:hover {
     footer{
         /* background-color: #36454F; */
         background-color: #2c3e50;
-        display: flex;
-        /* justify-content: space-around; */
-        height: 500px;
         width: 100%;
+        display: block;
+        padding: 40px 20px;
+        box-sizing: border-box;
     }
     .footer{
         display: flex;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: space-between;
+        align-items: flex-start;
         height: auto;
         width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .foot{
@@ -481,6 +630,8 @@ header ul li a:hover {
         font-size: 20px;
         /* display: inline; */
         /* padding: 50px 0; */
+        flex: 1 1 220px;
+        min-width: 220px;
     }
 
     #f-l{
@@ -489,18 +640,31 @@ header ul li a:hover {
     }
 
     #f-img{
-        padding: 50px 0 0;
+        padding: 20px 0 20px;
+        margin: 0 auto;
+        max-width: 200px;
+    }
+    #f-img img{
+        width: 100%;
+        height: auto;
+        display: block;
     }
     #quick{
-        display: flex;
+        display: inline-block;
         color: #d9dddf;
         font-size: 20px;
         text-decoration: none;
         padding: 5px 0;
+        line-height: 1.6;
+        margin-bottom: 6px;
+        word-break: break-word;
     }
     #quicks{
         padding: 5px 0;
         color: #d9dddf;
+        line-height: 1.6;
+        margin: 0 0 8px;
+        word-break: break-word;
 
     }
     #quick:hover {
@@ -508,12 +672,14 @@ header ul li a:hover {
     }
 
     .icon{
-        height: 50px;
+        height: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0 10px;
         margin: 0;
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
     
@@ -716,9 +882,10 @@ header ul li a:hover {
     #quicks{
         font-size: 16px;
     }
-    .foot{
-        display: block;
-    }
+    .footer{ justify-content: center; flex-direction: column; gap: 20px; }
+    .foot{ display: block; text-align: left; }
+    .foot + .foot { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; }
+    #quick{ display: block; }
 }
 
 @media (min-width:300px) and (max-width:650px){
@@ -751,9 +918,7 @@ header ul li a:hover {
         font-size: 16px;
         margin: 0;
     }
-    footer{
-        display: block;
-    }
+    footer{ display: block; padding: 30px 16px; }
    
     #f-l{
         padding: 20px 0 20px;
@@ -764,9 +929,21 @@ header ul li a:hover {
         height: 80px;
         width: 200px;
     }
-   
+    #quick{ font-size: 15px; }
+    #quicks{ font-size: 15px; }
 
 }
+
+@media (max-width: 480px){
+    .footer{ gap: 16px; }
+    .foot{ min-width: 100%; }
+    #f-l{ padding: 10px 0 10px; }
+    #quick{ font-size: 14px; }
+    #quicks{ font-size: 14px; }
+}
+
+/* Footer icon text resets */
+.footer .icon p{ margin: 0; }
 
 @media(min-width:450px) and (max-width:1500px){
     .hero-img{
@@ -1159,7 +1336,13 @@ header ul li a:hover {
 .hero-img.split {
     background-image: none;
     height: auto;
-    padding: 1.5rem 0;
+    padding: 2.5rem 0;
+    position: relative;
+    /* Layered subtle background */
+    background:
+        radial-gradient(1200px 400px at 85% -10%, rgba(119,162,42,0.08), transparent 60%),
+        radial-gradient(800px 300px at -10% 100%, rgba(102,126,234,0.08), transparent 60%),
+        linear-gradient(180deg, #f9fbfd 0%, #f5f7fb 100%);
 }
 .hero-img.split .hero-content {
     gap: 2rem;
@@ -1174,9 +1357,12 @@ header ul li a:hover {
 .hero-img.split .hero-ctas .cta-button { width: auto; }
 .hero-img.split .hero-image img {
     height: 520px;
+    border-radius: 18px;
+    border: 1px solid rgba(17,24,39,0.08);
+    box-shadow: 0 18px 45px rgba(17,24,39,0.18);
 }
 @media (max-width: 900px) {
-    .hero-img.split .hero-image img { height: 380px; }
+    .hero-img.split .hero-image img { height: 360px; }
 }
 
 /* ===== Hero enhancements ===== */
@@ -1233,6 +1419,59 @@ header ul li a:hover {
     100% { opacity: 0; transform: translate(-50%, 18px); }
 }
 
+/* ===== Split Hero: decorative accents ===== */
+.hero-img.split::before,
+.hero-img.split::after{
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+.hero-img.split::before{
+    right: 6%;
+    top: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(102,126,234,0.18), rgba(118,75,162,0.12));
+    filter: blur(8px);
+    transform: rotate(8deg);
+}
+.hero-img.split::after{
+    left: -40px;
+    bottom: -30px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(119,162,42,0.16), transparent 60%);
+    filter: blur(10px);
+}
+
+/* ===== Split Hero: elevate text block on desktop ===== */
+.hero-img.split .hero-text{
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(17,24,39,0.06);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(17,24,39,0.08);
+}
+@media (max-width: 900px){
+    .hero-img.split .hero-text{
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 1rem 0;
+    }
+}
+
+/* Improve chips and buttons subtly */
+.chip-link{ box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+.chip-link:hover{ box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+.button-small{ box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+.button-small:hover{ box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+
+/* Hide scroll hint for split layout where height is auto */
+.hero-img.split .scroll-hint{ display: none; }
+
 /* ===== Tabs and Search in Hero ===== */
 .hero-search {
     display: flex; align-items: center; gap: 10px;
@@ -1245,6 +1484,185 @@ header ul li a:hover {
     flex: 1; border: none; outline: none; font-size: 1rem; color: #111827; background: transparent;
 }
 .button-small { padding: 0.55rem 0.9rem; font-size: .95rem; border-radius: 10px; }
+
+/* ====== Logistics PRO page: layout & components (scoped) ====== */
+.logistics-pro-page .pro-sections { background: #f7f9fa; padding: 50px 20px; }
+.logistics-pro-page .pro-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.logistics-pro-page .pro-card {
+    background: #fff; border: 1px solid #eef2f7; border-radius: 14px; padding: 22px;
+    box-shadow: 0 10px 26px rgba(16,24,40,.06); text-align: left; transition: transform .2s ease, box-shadow .2s ease;
+}
+.logistics-pro-page .pro-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(16,24,40,.08); }
+.logistics-pro-page .pro-card i { font-size: 28px; color: #77A22A; }
+.logistics-pro-page .pro-card h3 { margin: 10px 0; font-size: 20px; }
+.logistics-pro-page .pro-card p { margin: 0 0 10px; color: #555; }
+.logistics-pro-page .pro-link { color: #1a73e8; text-decoration: none; font-weight: 600; }
+.logistics-pro-page .pro-link:hover { text-decoration: underline; }
+
+.logistics-pro-page .pro-heading { text-align: center; font-size: 32px; margin: 40px 0 10px; }
+.logistics-pro-page .pro-accordion { padding: 10px 20px 30px; }
+.logistics-pro-page .accordion { max-width: 900px; margin: 0 auto; }
+.logistics-pro-page .accordion-item {
+    width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 14px 16px; cursor: pointer; margin: 10px 0; text-align: left;
+}
+.logistics-pro-page .accordion-item[aria-expanded="true"] { border-color: #77A22A; background: #f7fbf2; }
+.logistics-pro-page .accordion-item i { transition: transform .2s ease; }
+.logistics-pro-page .accordion-item[aria-expanded="true"] i { transform: rotate(180deg); }
+.logistics-pro-page .accordion-panel { border-left: 3px solid #e5e7eb; padding: 12px 16px; margin: 0 0 6px 8px; background: #fff; border-radius: 8px; }
+
+.logistics-pro-page .pro-testimonials { padding: 40px 20px 60px; background: #ffffff; }
+.logistics-pro-page .pro-carousel { position: relative; max-width: 800px; margin: 0 auto; overflow: hidden; }
+.logistics-pro-page .pro-slide { display: none; text-align: center; padding: 16px; }
+.logistics-pro-page .pro-slide.active { display: block; animation: fadeUp .35s ease both; }
+.logistics-pro-page .pro-carousel-controls { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; pointer-events: none; }
+.logistics-pro-page .pro-carousel-controls button { pointer-events: all; background: #111827; color: #fff; border: none; border-radius: 999px; width: 36px; height: 36px; display: grid; place-items: center; opacity: .9; }
+.logistics-pro-page .pro-carousel-controls button:hover { opacity: 1; }
+
+@media (max-width: 900px){
+  .logistics-pro-page .pro-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px){
+  .logistics-pro-page .pro-grid { grid-template-columns: 1fr; }
+}
+
+/* ====== Additional logistics-specific sections (scoped) ====== */
+.logistics-pro-page .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.logistics-pro-page .track-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0 14px; }
+.logistics-pro-page .track-form input { border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; min-width: 240px; flex: 1; }
+.logistics-pro-page .track-form .track-result { width: 100%; margin: 6px 0 0; color: #374151; font-weight: 600; }
+
+.logistics-pro-page .pro-kpis { background: #ffffff; padding: 26px 20px; }
+.logistics-pro-page .kpi-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.logistics-pro-page .kpi { background: #f8fafc; border: 1px solid #eef2f7; border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+.logistics-pro-page .kpi i { color: #77A22A; font-size: 20px; }
+.logistics-pro-page .kpi strong { display: block; font-size: 20px; }
+.logistics-pro-page .kpi span { display: block; color: #6b7280; font-size: 14px; }
+@media (max-width: 900px){ .logistics-pro-page .kpi-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px){ .logistics-pro-page .kpi-grid { grid-template-columns: 1fr; } }
+
+.logistics-pro-page .pro-process { background: #f7f9fa; padding: 40px 20px; }
+.logistics-pro-page .process-steps { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto; padding: 0; }
+.logistics-pro-page .process-steps li { background: #fff; border: 1px solid #eef2f7; border-radius: 14px; padding: 16px; text-align: center; display: grid; gap: 10px; }
+.logistics-pro-page .process-steps i { color: #111827; font-size: 20px; }
+@media (max-width: 1000px){ .logistics-pro-page .process-steps { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px){ .logistics-pro-page .process-steps { grid-template-columns: 1fr 1fr; } }
+
+.logistics-pro-page .pro-compliance { background: #ffffff; padding: 24px 20px; }
+.logistics-pro-page .badge-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 1100px; margin: 0 auto; }
+.logistics-pro-page .badge { background: #f1f5f9; color: #111827; border: 1px solid #e5e7eb; border-radius: 999px; padding: 8px 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+.logistics-pro-page .badge i { color: #77A22A; }
+
+.logistics-pro-page .pro-industries { background: #f7f9fa; padding: 40px 20px; }
+.logistics-pro-page .industry-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.logistics-pro-page .industry { background: #ffffff; border: 1px solid #eef2f7; border-radius: 12px; padding: 18px; text-align: center; font-weight: 700; }
+@media (max-width: 900px){ .logistics-pro-page .industry-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px){ .logistics-pro-page .industry-grid { grid-template-columns: 1fr; } }
+
+.logistics-pro-page .pro-contact-cta { background: linear-gradient(180deg, #f9fbfd 0%, #f5f7fb 100%); padding: 50px 20px; }
+.logistics-pro-page .cta-box { max-width: 900px; margin: 0 auto; background: #fff; border: 1px solid #eef2f7; border-radius: 18px; padding: 24px; text-align: center; box-shadow: 0 10px 26px rgba(16,24,40,.06); }
+.logistics-pro-page .cta-box h3 { margin: 0 0 8px; }
+.logistics-pro-page .cta-box p { margin: 0 0 16px; color: #555; }
+
+/* ====== Milestones page (scoped) ====== */
+.milestones-page .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.milestones-page .ms-hero { background: #f7f9fa; padding: 40px 20px; }
+.milestones-page .ms-hero__box { max-width: 900px; margin: 0 auto; background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 24px; box-shadow: 0 10px 26px rgba(16,24,40,.06); }
+.milestones-page .ms-hero__box h1 { margin: 0 0 8px; }
+.milestones-page .ms-hero__box p { margin: 0 0 12px; color: #555; }
+.milestones-page .ms-form { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.milestones-page .ms-form input { border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; min-width: 260px; flex: 1; }
+.milestones-page .ms-error { width: 100%; color: #b91c1c; font-weight: 700; margin: 6px 0 0; }
+
+.milestones-page .ms-results { padding: 30px 20px 60px; background: #ffffff; }
+.milestones-page .ms-card { max-width: 900px; margin: 0 auto; background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 18px; box-shadow: 0 10px 26px rgba(16,24,40,.06); }
+.milestones-page .ms-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.milestones-page .ms-badge { background: #111827; color: #fff; border-radius: 999px; padding: 6px 10px; font-weight: 800; }
+.milestones-page .ms-timeline { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+.milestones-page .ms-timeline li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; padding: 10px 8px; border: 1px solid #eef2f7; border-radius: 12px; }
+.milestones-page .ms-timeline .ms-dot { width: 12px; height: 12px; border-radius: 50%; background: #77A22A; margin-top: 6px; }
+.milestones-page .ms-timeline .ms-title { font-weight: 800; }
+.milestones-page .ms-timeline .ms-meta { color: #6b7280; font-size: 14px; }
+
+/* ====== Logistics-pro: simple banner hero (scoped) ====== */
+.logistics-pro-page .pro-hero {
+    position: relative;
+    background-image: url(Truck-Transport.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+}
+.logistics-pro-page .pro-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.35));
+}
+.logistics-pro-page .pro-hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 20px;
+    color: #fff;
+    text-align: left;
+}
+.logistics-pro-page .pro-hero__title { font-size: 34px; font-weight: 800; margin: 0 0 8px; text-shadow: 0 6px 24px rgba(0,0,0,.35); }
+.logistics-pro-page .pro-hero__subtitle { font-size: 18px; max-width: 60ch; margin: 0 0 16px; color: #e8eef3; }
+.logistics-pro-page .pro-hero__ctas { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 12px; }
+.logistics-pro-page .pro-hero__chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.logistics-pro-page .chip { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 6px 10px; border-radius: 999px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+@media (max-width: 700px){
+  .logistics-pro-page .pro-hero { min-height: 260px; }
+  .logistics-pro-page .pro-hero__title { font-size: 26px; }
+  .logistics-pro-page .pro-hero__subtitle { font-size: 16px; }
+}
+/* ====== Logistics page-only responsive enhancements ====== */
+.logistics-page .sec {
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.logistics-page .sec > .warehousing,
+.logistics-page .sec > .driver,
+.logistics-page .sec > .quote {
+    flex: 1 1 320px;
+    width: auto;
+    min-height: 280px;
+    height: auto;
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+}
+.logistics-page .sec #log { color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,.35); }
+.logistics-page #logistic { border: 0; }
+
+/* Services grid: allow wrapping nicely */
+.logistics-page .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.logistics-page .services-grid .service {
+    flex: 1 1 280px;
+    max-width: 100%;
+}
+
+/* Footer spacing on small screens already covered; add small polish */
+.logistics-page footer .foot a { word-break: break-word; }
+
+@media (max-width: 900px) {
+    .logistics-page .sec { flex-direction: column; align-items: stretch; }
+    .logistics-page .sec > .warehousing,
+    .logistics-page .sec > .driver,
+    .logistics-page .sec > .quote { width: 100%; min-height: 240px; }
+}
+
+@media (max-width: 600px) {
+    .logistics-page header ul li a { padding: 10px 16px; }
+    .logistics-page .services-grid { gap: 12px; }
+}
 
 .hero-tabs { display: flex; gap: 8px; margin: 6px 0 14px; }
 .tab {

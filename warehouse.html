@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SwiftBid Logistics Warehouses</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     * {
       margin: 0;
@@ -422,13 +423,16 @@
     }
   </style>
 </head>
-<body>
+<body class="side-nav">
   <header>
     <section id="nav">
       <div class="logo">
         <img src="1.png" alt="SwiftBid Logistics" height="50px">
       </div>
-      <nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="nav-menu">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="services.html">Services</a></li>
@@ -697,5 +701,7 @@
       }
     });
   </script>
+
+  <script src="script.js"></script>
 </body>
 </html>

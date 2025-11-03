@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SBL Blogs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <style>
     #nav {
       height: 90px;
       background-color: #ffffff;
-      /* display: flex; */
+      position: relative;
     }
 
     .logo {
@@ -45,6 +46,47 @@
 
     header ul li a:hover {
       color: #77A22A;
+    }
+
+    /* Inline side-nav styles (blog-only) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #1f1a1a;
+      cursor: pointer;
+      padding: 10px;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1001;
+    }
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: inline-block; }
+      header nav {
+        position: fixed;
+        top: 0;
+        left: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        padding-top: 80px;
+      }
+      header nav.active { left: 0; }
+      header ul { flex-direction: column; gap: 0; width: 100%; margin: 0; padding: 0; }
+      header ul li { width: 100%; border-bottom: 1px solid #f0f0f0; }
+      header ul li a { display: block; padding: 15px 25px; font-size: 16px; }
+      .mobile-menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 999; display: none; }
+      .mobile-menu-overlay.active { display: block; }
     }
 
     body {
@@ -305,12 +347,12 @@
   </style>
 </head>
 
-<body>
+<body class="side-nav">
   <header>
     <section id="nav">
       <div class="logo"><img src="1.png" alt="" height="60px"></div>
-
-      <nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+      <nav id="nav-menu">
         <ul>
 
           <li><a href="index.html">Home</a></li>
@@ -320,7 +362,7 @@
           <li><a href="warehouse.html">Warehousing</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact Us</a></li>
-
+          
         </ul>
       </nav>
     </section>
@@ -463,6 +505,28 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function(){
+      var btn = document.getElementById('mobile-menu-btn');
+      var nav = document.getElementById('nav-menu');
+      if (!btn || !nav) return;
+      var overlay = document.createElement('div');
+      overlay.className = 'mobile-menu-overlay';
+      document.body.appendChild(overlay);
+      function close(){ nav.classList.remove('active'); overlay.classList.remove('active'); if(btn.firstElementChild){ btn.firstElementChild.className='fa-solid fa-bars'; } }
+      btn.addEventListener('click', function(){
+        nav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        if (btn.firstElementChild) {
+          btn.firstElementChild.className = nav.classList.contains('active') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        }
+      });
+      overlay.addEventListener('click', close);
+      nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', close); });
+      document.addEventListener('keydown', function(e){ if(e.key==='Escape' && nav.classList.contains('active')) close(); });
+    })();
+  </script>
 </body>
 
 </html>
